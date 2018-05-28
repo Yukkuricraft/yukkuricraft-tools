@@ -44,6 +44,12 @@ class IP_Checker {
         fclose($f);
     }
 
+    static function log(string $msg) {
+        $prepend = sprintf("[%s] ", date('c'));
+        error_log($prepend.$msg."\n", 3, self::LOG_LOC);
+        var_dump($prepend.$msg);
+    }
+
     /** Idk why I'm writing docblocks
      *
      */
@@ -68,8 +74,7 @@ class IP_Checker {
             $log_msg = "IP was detected as not having changed from $prev_ip";
         }
 
-        error_log($log_msg, 3, self::LOG_LOC);
-        var_dump($log_msg);
+        self::log($log_msg);
     }
 
     /** ONLY TAKES A MESSAGE BODY
@@ -109,7 +114,7 @@ class IP_Checker {
 
 }
 
-if ($argv[1] === "-t") {
+if (sizeof($argv) > 1 && $argv[1] === "-t") {
     $test_run = true;
 } else {
     $test_run = false;
