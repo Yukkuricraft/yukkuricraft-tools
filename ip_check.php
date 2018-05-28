@@ -13,7 +13,7 @@ class IP_Checker {
     const LOG_LOC = "/var/log/ip_checker_logs";
     const SENT_FROM_NAME = "Yukkuri Notifications";
     const SUBJECT_FMT = "[Yukkuricraft] IP Change Detected on %s";
-    const BODY_FMT = "Hi nignogs.\n\nThis is an automagically generated email.\n\nPrev Server IP: %s\nNew Server Ip: %s\n\nHave fun playing, nerds.\n- RemiBot";
+    const BODY_FMT = "Hi nignogs.<br><br>This is an automagically generated email.<br><br>Prev Server IP: %s<br>New Server IP: %s<br><br>Have fun playing, nerds.<br>- RemiBot";
 
     const EMAIL_RECIPIENT_FMT = "%s <%s>";
 
