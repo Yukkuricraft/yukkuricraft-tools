@@ -47,14 +47,14 @@ class IP_Checker {
     /** Idk why I'm writing docblocks
      *
      */
-    static function run() {
+    static function run(bool $test_run = false) {
         $curr_ip = trim(`curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'`);
         if ( ! is_file(self::FILENAME)) {
             self::writeIpToFile($curr_ip);
         }
         $prev_ip = file_get_contents(self::FILENAME);
 
-        if ($prev_ip !== $curr_ip) {
+        if ($prev_ip !== $curr_ip || $test_run) {
             // IP has changed
             $recipients = self::implodeRecipients();
             if (self::sendMail(sprintf(self::BODY_FMT, $prev_ip, $curr_ip))) {;
@@ -92,7 +92,7 @@ class IP_Checker {
             $mail->Password   = Config::THROWAWAY_GMAIL_PASS;
 
             $mail->SetFrom(Config::THROWAWAY_GMAIL_EMAIL, self::SENT_FROM_NAME);
-            $mail->AddReplyTo(Config::THROWAWAY_GMAIL_EMAIL, self::SENT_FROM_NAME);
+            $mail->AddReplyTo(Config::REPLY_TO_EMAIL, self::SENT_FROM_NAME);
             $mail->Subject    = sprintf(self::SUBJECT_FMT, date('c'));
             $mail->MsgHTML($body);
 
@@ -109,6 +109,11 @@ class IP_Checker {
 
 }
 
-IP_Checker::run();
+if ($argv[1] === "-t") {
+    $test_run = true;
+} else {
+    $test_run = false;
+}
+IP_Checker::run($test_run);
 
 ?>
