@@ -8,7 +8,7 @@ require('not-really-vendors/PHPMailer/src/Exception.php');
 require('Config.php');
 
 class IP_Checker {
-    const FILENAME = 'prev_known_ip';
+    const PREV_IP_FILE_LOC = '/home/minecraft/prev_known_ip';
 
     const LOG_LOC = "/var/log/ip_checker_logs";
     const SENT_FROM_NAME = "Yukkuri Notifications";
@@ -39,7 +39,7 @@ class IP_Checker {
     }
 
     static function writeIpToFile(string $ip) {
-        $f = fopen(self::FILENAME, 'w');
+        $f = fopen(self::PREV_IP_FILE_LOC, 'w');
         fwrite($f, $ip);
         fclose($f);
     }
@@ -55,10 +55,10 @@ class IP_Checker {
      */
     static function run(bool $test_run = false) {
         $curr_ip = trim(`curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'`);
-        if ( ! is_file(self::FILENAME)) {
+        if ( ! is_file(self::PREV_IP_FILE_LOC)) {
             self::writeIpToFile($curr_ip);
         }
-        $prev_ip = file_get_contents(self::FILENAME);
+        $prev_ip = file_get_contents(self::PREV_IP_FILE_LOC);
 
         if ($prev_ip !== $curr_ip || $test_run) {
             // IP has changed
