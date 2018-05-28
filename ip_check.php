@@ -50,7 +50,7 @@ class IP_Checker {
         }
         $prev_ip = file_get_contents(self::FILENAME);
 
-        if ($prev_ip === $curr_ip) {
+        if ($prev_ip !== $curr_ip) {
             // IP has changed
             $recipients = self::implodeRecipients();
             if (self::sendMail(sprintf(self::BODY_FMT, $prev_ip, $curr_ip))) {;
