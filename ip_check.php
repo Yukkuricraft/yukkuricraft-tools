@@ -38,15 +38,19 @@ class IP_Checker {
         return $string;
     }
 
+    static function writeIpToFile(string $ip) {
+        $f = fopen(self::FILENAME, 'w');
+        fwrite($f, $ip);
+        fclose($f);
+    }
+
     /** Idk why I'm writing docblocks
      *
      */
     static function run() {
         $curr_ip = trim(`curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'`);
         if ( ! is_file(self::FILENAME)) {
-            $f = fopen(self::FILENAME, 'w');
-            fwrite($f, $curr_ip);
-            fclose($f);
+            self::writeIpToFile($curr_ip);
         }
         $prev_ip = file_get_contents(self::FILENAME);
 
@@ -55,6 +59,8 @@ class IP_Checker {
             $recipients = self::implodeRecipients();
             if (self::sendMail(sprintf(self::BODY_FMT, $prev_ip, $curr_ip))) {;
                 $log_msg = "Sent email to $recipients notifying IP change from $prev_ip => $curr_ip";
+
+                self::writeIpToFile($curr_ip);
             } else {
                 $log_msg = "Failed to send email to $recipients";
             }
@@ -69,7 +75,7 @@ class IP_Checker {
     /** ONLY TAKES A MESSAGE BODY
      *
      */
-    static function sendMail($body) {
+    static function sendMail(string $body) {
         try {
             $mail=new PHPMailer\PHPMailer\PHPMailer();
             $mail->CharSet = 'UTF-8';
