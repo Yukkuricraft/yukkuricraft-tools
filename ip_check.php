@@ -113,25 +113,30 @@ class IP_Checker {
 
 }
 
+# We also do a hacky require_once to grab IP_Checker::LOG_LOC.
+# As such, make sure we only run the script when run as a SCRIPT and not included in another file.
+$INVOKED_AS_SCRIPT = $argv && $argv[0] && (realpath($argv[0]) === __FILE__);
+
 # I can't be assed to set up an actual argparser for this shit.
-
-if (sizeof($argv) === 1) {
-    echo "Run with `ip_check.php --run` to actually execute script.\n"
-} else {
-    if (sizeof($argv) > 1 && $argv[1] === "--run") {
-        $run = true;
+if ($INVOKED_AS_SCRIPT) {
+    if (sizeof($argv) === 1) {
+        echo "Run with `ip_check.php --run` to actually execute script.\n";
     } else {
-        $run = false
-    }
+        if (sizeof($argv) > 1 && $argv[1] === "--run") {
+            $run = true;
+        } else {
+            $run = false;
+        }
 
-    if (sizeof($argv) > 2 && $argv[2] === "-t") {
-        $test_run = true;
-    } else {
-        $test_run = false;
-    }
+        if (sizeof($argv) > 2 && $argv[2] === "-t") {
+            $test_run = true;
+        } else {
+            $test_run = false;
+        }
 
-    if ($run) {
-        IP_Checker::run($test_run);
+        if ($run) {
+            IP_Checker::run($test_run);
+        }
     }
 }
 ?>
