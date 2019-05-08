@@ -10,7 +10,7 @@ require('secrets/Config.php');
 class IP_Checker {
     const PREV_IP_FILE_LOC = '/home/minecraft/prev_known_ip';
 
-    const LOG_LOC = "/var/log/ip_checker_logs";
+    const LOG_LOC = "/var/log/minecraft/ip_checker_logs";
     const SENT_FROM_NAME = "Yukkuri Notifications";
     const SUBJECT_FMT = "[Yukkuricraft] IP Change Detected on %s";
     const BODY_FMT = "Hi nignogs.<br><br>This is an automagically generated email.<br><br>Prev Server IP: %s<br>New Server IP: %s<br><br>Have fun playing, nerds.<br>- RemiBot";
