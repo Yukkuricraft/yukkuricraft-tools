@@ -47,7 +47,6 @@ class IP_Checker {
     static function log(string $msg) {
         $prepend = sprintf("[%s] ", date('c'));
         error_log($prepend.$msg."\n", 3, self::LOG_LOC);
-        var_dump($prepend.$msg);
     }
 
     /** Idk why I'm writing docblocks
@@ -114,11 +113,25 @@ class IP_Checker {
 
 }
 
-if (sizeof($argv) > 1 && $argv[1] === "-t") {
-    $test_run = true;
-} else {
-    $test_run = false;
-}
-IP_Checker::run($test_run);
+# I can't be assed to set up an actual argparser for this shit.
 
+if (sizeof($argv) === 1) {
+    echo "Run with `ip_check.php --run` to actually execute script.\n"
+} else {
+    if (sizeof($argv) > 1 && $argv[1] === "--run") {
+        $run = true;
+    } else {
+        $run = false
+    }
+
+    if (sizeof($argv) > 2 && $argv[2] === "-t") {
+        $test_run = true;
+    } else {
+        $test_run = false;
+    }
+
+    if ($run) {
+        IP_Checker::run($test_run);
+    }
+}
 ?>
