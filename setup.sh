@@ -8,14 +8,12 @@ git submodule update
 # Setups up the not-really-vendors folder with PHPMailer
 
 if [ -d not-really-vendors ]; then
-do
     rm -rf not-really-vendors # If it exists, just delete and redownload shit incase something went wrong
-done
+fi
 
 if [ -d PHPMailer-master ]; then
-do
     rm -rf PHPMailer-master
-done
+fi
 
 wget https://github.com/PHPMailer/PHPMailer/archive/master.zip
 unzip master.zip
