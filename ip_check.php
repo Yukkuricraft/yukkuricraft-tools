@@ -5,7 +5,7 @@ require('not-really-vendors/PHPMailer/src/SMTP.php');
 require('not-really-vendors/PHPMailer/src/POP3.php');
 require('not-really-vendors/PHPMailer/src/Exception.php');
 
-require('Config.php');
+require('secrets/Config.php');
 
 class IP_Checker {
     const PREV_IP_FILE_LOC = '/home/minecraft/prev_known_ip';
