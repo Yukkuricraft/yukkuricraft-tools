@@ -1,8 +1,12 @@
 #!/bin/bash
 
+# NOTE: Make sure to run this from root of repo.
+
 # Setups up the not-really-vendors folder with PHPMailer
 wget https://github.com/PHPMailer/PHPMailer/archive/master.zip
-unzip master.zip -d PHPMailer
+unzip master.zip
+mkdir not-really-vendors
+mv PHPMailer-master not-really-vendors/PHPMailer
 rm master.zip
 
 # Makes sure prev_known_ip exists.
