@@ -3,7 +3,7 @@
 # NOTE: Make sure to run this from root of repo.
 
 # First make sure we pull down our secrets
-#git submodule update
+git submodule update
 
 # Setups up the not-really-vendors folder with PHPMailer
 
