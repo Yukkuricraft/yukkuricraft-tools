@@ -59,7 +59,7 @@ class IP_Checker {
         }
         $prev_ip = file_get_contents(self::PREV_IP_FILE_LOC);
 
-        if ($prev_ip !== $curr_ip || $test_run) {
+        if ($test_run || ($prev_ip !== $curr_ip && $curr_ip !== "")) {
             // IP has changed
             $recipients = self::implodeRecipients();
             if (self::sendMail(sprintf(self::BODY_FMT, $prev_ip, $curr_ip))) {;
