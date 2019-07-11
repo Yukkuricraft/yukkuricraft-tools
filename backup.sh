@@ -48,7 +48,7 @@ for WORLD in "${WORLDS_TO_BACKUP[@]}"; do
 
         BACKUP_NAME="$WORLD-$(date +"%Y-%m-%d_%H-%M").tar.gz"
         TRANSFORM_EXP="s|^|$WORLD/|"
-        tar -zcf "$FULL_BACKUP_PATH/$BACKUP_NAME" --transform $TRANSFORM_EXP -C "$FULL_WORLD_PATH" .
+        tar -zcf "$FULL_BACKUP_PATH/$BACKUP_NAME" --transform "$TRANSFORM_EXP" -C "$FULL_WORLD_PATH" .
 done
 
 
