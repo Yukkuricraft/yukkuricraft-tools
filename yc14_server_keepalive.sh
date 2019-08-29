@@ -15,4 +15,4 @@ if [ "$YC_PROCESS_ID" != "" ]; then
 fi
 
 log "Could not find YC screen running! Restarting..."
-$START_SCRIPT
+/bin/bash $START_SCRIPT
