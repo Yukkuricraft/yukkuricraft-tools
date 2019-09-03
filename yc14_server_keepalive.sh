@@ -1,18 +1,30 @@
 #!/bin/bash
 
-# MUST BE RUN AS ROOT
+NAME=Yukkuricraft
+SCREEN_NAME=yukkuricraft14
+JAR_FILE="paper-172-async.jar"
+JAR_PATH="/home/minecraft/YC/Yukkuricraft"
+RAM=24G
+
+###################
 
 log () {
     echo $(date +"[%Y-%m-%d %H:%M]") $@
 }
 
-YC_PROCESS_ID=$(ps aux | grep "yukkuricraft14" | grep "SCREEN" | grep -o "[0-9]\+" | head -1)
-START_SCRIPT="/home/minecraft/YC/YukkuriCraft/start.sh"
+PROCESS_ID=$(ps aux | grep "$SCREEN_NAME" | grep "SCREEN" | grep -o "[0-9]\+" | head -1)
 
-if [ "$YC_PROCESS_ID" != "" ]; then
-    log "YC screen was running - Assuming server is alive!"
+if [ "$PROCESS_ID" != "" ]; then
+    log "$NAME's screen was running - Assuming server is alive!"
     exit 1
 fi
 
-log "Could not find YC screen running! Restarting..."
-/bin/bash $START_SCRIPT
+log "Could not find $NAME's screen running! Restarting..."
+
+screen -dmS $SCREEN_NAME \
+        java -Xms${RAM} -Xmx${RAM} \
+        -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 \
+        -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled \
+        -XX:-UseBiasedLocking -XX:+ExplicitGCInvokesConcurrent \
+        -Xss8m \
+        -jar "$JAR_PATH/$JAR_FILE"
