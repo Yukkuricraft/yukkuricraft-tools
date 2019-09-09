@@ -21,8 +21,11 @@ fi
 
 log "Could not find $NAME's screen running! Restarting..."
 
+cd $JAR_PATH
+
 screen -dmS $SCREEN_NAME \
         java -Xms${RAM} -Xmx${RAM} \
+        -Duser.dir=${JAR_PATH} \
         -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 \
         -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled \
         -XX:-UseBiasedLocking -XX:+ExplicitGCInvokesConcurrent \
