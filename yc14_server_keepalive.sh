@@ -3,7 +3,7 @@
 NAME=Yukkuricraft
 SCREEN_NAME=yukkuricraft14
 JAR_FILE="paper-172-async.jar"
-JAR_PATH="/home/minecraft/YC/Yukkuricraft"
+JAR_PATH="/home/minecraft/YC/YukkuriCraft"
 RAM=24G
 
 ###################
