@@ -46,15 +46,15 @@ CONFIGS = [
             # Both of these folders contain a list of folders which contain the actual backups we want to clean up.
             # Note: We only search with a depth of 1. That is to say, if you have a folder with folders you want cleaned that's two levels deep, we will not account for it.
             "SEARCH_FOLDERS": [
-                #"/media/backups/YukkuriCraft/PermaBackups/remi_backups/plugins",
-                #"/media/backups/YukkuriCraft/PermaBackups/remi_backups/worlds",
+                "/media/backups/YukkuriCraft/PermaBackups/remi_backups/plugins",
+                "/media/backups/YukkuriCraft/PermaBackups/remi_backups/worlds",
             ],
             # BLOCKED_SEARCH_FOLDERS are explicitly blacklisted "search folders". That is to say, any folder found inside a BLOCKED_SEARCH_FOLDERS folder will be blacklisted.
             "BLOCKED_SEARCH_FOLDERS": [
             ],
             # SINGLE_FOLDERS is basically a single folder which contains backups to clean up. This is for one-off backup locations or the like.
             "SINGLE_FOLDERS": [
-                "/media/backups/YukkuriCraft/PermaBackups/remi_backups/worlds/FF6",
+                #"/media/backups/YukkuriCraft/PermaBackups/remi_backups/worlds/FF6",
             ],
             # BLOCKED_SINGLE_FOLDERS are an explicit list of blacklisted folders. This the single-folder version of BLOCKED_SEARCH_FOLDERS
             "BLOCKED_SINGLE_FOLDERS": [
@@ -91,6 +91,15 @@ def parseConf(config):
 
     return rules
 
+def deleteInvalidSizeBackups(path):
+    global MINIMUM_BACKUP_SIZE
+    backups = os.listdir(path)
+
+    for fname in backups:
+        full_path = "%s/%s" % (path, fname)
+        if os.path.getsize(full_path) < MINIMUM_BACKUP_SIZE:
+            os.remove(full_path)
+
 def genFileToEpochMap(path):
     global MINIMUM_BACKUP_SIZE
     backups = os.listdir(path)
@@ -99,18 +108,13 @@ def genFileToEpochMap(path):
 
     for fname in backups:
         full_path = "%s/%s" % (path, fname)
-        if os.path.getsize(full_path) < MINIMUM_BACKUP_SIZE:
-            # This archive file is most likely an invalid/corrupted backup as no backup should be smaller than MINIMUM_BACKUP_SIZE
-            print "Skipping %s due to too-small a filesize" % full_path
-            continue
-
         r = re.compile(r"\d{4}-\d{2}-\d{2}_\d{2}-\d{2}")
         result = r.search(fname)
 
         timestamp = result.group()
         epoch_timestamp = convertToEpoch(datetime.strptime(timestamp, "%Y-%m-%d_%H-%M"))
 
-        mapping["%s/%s" % (path, fname)] = epoch_timestamp
+        mapping[full_path] = epoch_timestamp
     return mapping
 
 
@@ -236,6 +240,7 @@ def runConfig(sieve_conf, folder_conf):
         print
         print "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
         print "LOOKING AT %s" % folder_path
+        deleteInvalidSizeBackups(folder_path)
         file_to_epoch_map = genFileToEpochMap(folder_path)
         #print(repr(file_to_epoch_map))
 
@@ -243,7 +248,8 @@ def runConfig(sieve_conf, folder_conf):
         to_delete = findAllFilesToDelete(slots, file_to_epoch_map)
 
         for backup_to_delete in to_delete:
-            pass#print backup_to_delete
+            print backup_to_delete
+            os.remove(backup_to_delete)
 
 
 def run():
