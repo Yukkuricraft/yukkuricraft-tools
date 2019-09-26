@@ -11,7 +11,7 @@ grep_stdout = normal.communicate()[0]
 
 out_of_space = len(grep_stdout) > 0
 
-if not out_of_space:
+if out_of_space:
     payload = {
         "content": "Hey Dipshit (%s), the backup disk is out of space." % (secrets.REMI_USER_ID),
     }
