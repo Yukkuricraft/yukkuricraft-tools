@@ -2,6 +2,7 @@
 
 import requests
 import subprocess
+from datetime import datetime
 import secrets.discord_secrets as secrets
 
 OUT_OF_DISK_STRING = "gzip: stdout: No space left on device"
@@ -19,3 +20,5 @@ if out_of_space:
     }
 
     requests.post(secrets.DISCORD_WEBHOOK_URL, json=payload, headers={'content-type': 'application/json'})
+else:
+    print "[%s] Good job, dumbass. You have diskspace for today." % (datetime.now().strftime("%Y-%m-%d"))
