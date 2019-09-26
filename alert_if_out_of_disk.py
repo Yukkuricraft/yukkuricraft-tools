@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import requests
 import subprocess
 import secrets.discord_secrets as secrets
