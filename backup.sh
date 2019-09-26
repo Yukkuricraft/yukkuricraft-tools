@@ -37,12 +37,10 @@ WORLDS_TO_BACKUP=(
     "Makai"
     "NeoGensokyo"
     "NewHaku"
-    "NewYoukaiMountain"
     "Survival4"
     "Survival4_nether"
     "Survival4_the_end"
     "PB_Gensokyo"
-    "Sakuya's World"
     "Senkai"
     "Statues"
 )

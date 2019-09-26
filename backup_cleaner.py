@@ -1,3 +1,5 @@
+#!/bin/bash/python
+
 import os
 import re
 import sys
