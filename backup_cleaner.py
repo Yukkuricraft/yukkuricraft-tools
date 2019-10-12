@@ -26,22 +26,13 @@ CONFIGS = [
         # 4 backups that are at least 168 hours apart that are a minimum of 384 hours old (ie, 24 + (5 * 72)
         # Note that because of the above logic only having a _minimum_ age, this means your oldest backup can be much older than just the pure sum of all categories.
         #
-        # Special syntax:
-        # - Adding '\+\-[0-9]{2}%' to the end of a rule string means the logic will allow for a "plus minus <num> percentage variation" of the delta length.
-        #   ie, if you have a 1y+-10%, then that means you want backups that are ideally minimum 1y apart, but if you want to retain old backups without deleting them because
-        #   the file in question missed the 1y threshold by say just a month, perhaps you want to actually retain the file. Basically, this is for making your spacing length more lenient
-        #   Ask Remi if you need clarification. This is a stupid config.
-        #
         # Special Notes:
-        # - Similar to above, the default threshold value is 1%. That is to say, if you wanted each backup to be at least 1000 seconds apart, by default
-        #   this script will allow for backups to actually be a minimum of _990_ seconds (1000 * 0.99) apart. This is to account for the fact that even if backups are made exactly 1000 seconds apart,
-        #   given real world scenarios these backups might be some small # of seconds off.
         # - Given the "rough"/"guesstimating" nature of the time calculations/thresholds, this script becomes less effective the older the backups get. Particularly once you get into year-long ranges.
         "SIEVE_CONFIG": {
             '4h': 6 * 7, # one week worth of standard 6 hour backups
             '1d': 7 * 4, # one month worth of backups all minimum 24 hours apart
             '1w': 4 * 4, # 4 months worth, all 1 week apart
-            '6m+-10%': 4,# 2 years, all 6 months apart
+            '6m': 4,     # 2 years, all 6 months apart
         },
         "FOLDER_CONFIG": {
             # SEARCH_FOLDERS are folders that contain "folders to clean up". This should point at the "worlds" folder and the "plugins" folder, eg.
