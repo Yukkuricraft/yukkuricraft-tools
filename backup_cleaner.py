@@ -29,10 +29,10 @@ CONFIGS = [
         # Special Notes:
         # - Given the "rough"/"guesstimating" nature of the time calculations/thresholds, this script becomes less effective the older the backups get. Particularly once you get into year-long ranges.
         "SIEVE_CONFIG": {
-            '4h': 6 * 7, # one week worth of standard 6 hour backups
-            '1d': 7 * 4, # one month worth of backups all minimum 24 hours apart
-            '1w': 4 * 4, # 4 months worth, all 1 week apart
-            '6m': 4,     # 2 years, all 6 months apart
+            '4h': 6 * 6, # 36: six days worth of standard 4 hour backups
+            '1d': 7 * 3, # 21: three weeks worth of backups all minimum 24 hours apart
+            '1w': 4 * 2, #  8: 2 months worth, all 1 week apart
+            '6m': 4,     #  4: 2 years, all 6 months apart
         },
         "FOLDER_CONFIG": {
             # SEARCH_FOLDERS are folders that contain "folders to clean up". This should point at the "worlds" folder and the "plugins" folder, eg.
