@@ -42,12 +42,7 @@
 				   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Commands
 				</a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdownCommands">
-					<a class="dropdown-item" href="#commandsGen">General/Misc commands</a>
-					<a class="dropdown-item" href="#commandsTp">Teleport commands</a>
-					<a class="dropdown-item" href="#commandsChat">Chat commands</a>
-					<a class="dropdown-item" href="#commandsLWC">LWC/Chest commands</a>
-				</div>
+				<div id="navbar-commands-dropdown" class="dropdown-menu" aria-labelledby="navbarDropdownCommands"></div>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="#subdomains">Subdomains and pages</a>
@@ -376,101 +371,6 @@
 		  <li><span class="command">/<strong>spawn</strong></span> - teleports you to spawn</li>
 		  <li><span class="command">/<strong>tp</strong> user1 user2</span> - teleports user1 to user2</l i>
 		</ul>-->
-
-		<h3 id="commandsGen" class="scrolltarget">General/Misc Commands</h3>
-		<ul>
-			<li><span class="command"><strong>/list</strong></span> - See who is online.
-			<li><span class="command"><strong>/ontime</strong></span> - Check your playtime stats
-			<li><span class="command"><strong>/ping</strong></span> - Check your ping time in mS!
-			<li><span class="command"><strong>/books</strong></span> - Get a list of books in the Yukkuricraft Library!
-			<li><span class="command"><strong>/book | /get book &lt;name&gt;</strong></span> - Get the book by that name
-				and
-				put it in your inventory!
-			<li><span class="command"><strong>/hat &lt;blockID&gt;</strong></span> - Hat yourself with the blockID you
-				gave!
-				Only works in creative worlds!
-		</ul>
-
-		<h3 id="commandsTp" class="scrolltarget">Teleport commands</h3>
-		<ul>
-			<li><span class="command"><strong>/call &lt;user&gt;</strong></span> - Request to teleport [B]to[/B] the
-				specified player. Said player will have to then accept the teleport request for it to complete.
-			<li><span class="command"><strong>/bring | /tpa [user]</strong></span> - Use this after someone has
-				requested a
-				teleport to you to accept and bring them to your position.
-			<li><span class="command"><strong>/return</strong></span> - Return to the last location before your last
-				teleport.
-		</ul>
-
-		<h3 id="commandsChat" class="scrolltarget">Chat commands</h3>
-		<ul>
-			<li><span class="command"><strong>/channelswitch | switchchannel &lt;channelName&gt;</strong></span> -
-				Switches
-				from your current chat channel to the other; in otherwords, your messages will go to channel
-				channelName.
-			</li>
-			<li><span class="command"><strong>/channels | /listchannels</strong></span> - Lists channels.</li>
-			<li><span
-					class="command"><strong>/beginlistening | /listen | /startlistening &lt;channelName&gt;</strong></span>
-				- Start listening to a channel; doesn't make the channel your active chat channel. You only recieve
-				messages
-				from channelName.
-			</li>
-			<li><span class="command"><strong>/stoplistening &lt;channelName&gt;</strong></span> - Stops listening to a
-				channel; you no longer recieve messages from channelName.
-			</li>
-			<li><span class="command"><strong>/msg | /message | /w | /pm | /t | /tell | /whisper &lt;target&gt; &lt;message...&gt;</strong></span>
-				- Private message a user.
-			</li>
-			<li><span class="command"><strong>/r | /reply &lt;message...&gt;</strong></span> - Shortcut command to reply
-				to
-				private messages.
-			</li>
-			<li><span class="command"><strong>/me &lt;message...&gt;</strong></span> - Send an action message.</li>
-		</ul>
-
-		<h3 id="commandsLWC" class="scrolltarget">LWC/Chest commands</h3>
-		<ul>
-			<li><span class="command"><strong>/cpublic</strong></span> - Creates a public protection. Anyone can use a
-				Public protection, but no one can protect it.
-			</li>
-			<li><span class="command"><strong>/cpassword</strong></span> - Password-protect a block. Each time you login
-				you
-				need to enter the password to access it. (if someone else knows the password, they can access it too.
-			</li>
-			<li><span class="command"><strong>/cprivate</strong></span> - Create a private protection. Private means
-				private: you can also allow other users or groups to access the block as well. This is done by adding
-				them
-				after "private". You can add more than one group and/or user per command. When you prefix a User or
-				Group
-				with an '@', this User/Group will be able to modify the block and add other users. They cannot disable
-				the
-				owner from modifying it.
-			</li>
-			<li><span class="command"><strong>/cmodify</strong></span> - Modify an existing protection, adding or
-				removing
-				users and/or groups. See /lwc create, the example for private protections. The same syntax is used for
-				this
-				command. There's an additional prefix however. Writing a '-' infront of a User or Group removes the
-				access
-				from the block.
-			</li>
-			<li><span class="command"><strong>/cunlock</strong></span> - Unlock a password-protected block.</li>
-			<li><span class="command"><strong>/cinfo</strong></span> - Punch a protection to view information on it.
-			</li>
-			<li><span class="command"><strong>/cremove</strong></span> - Removes protection.</li>
-			<li><span class="command"><strong>/climits</strong></span> - View the amount of protections you are allowed.
-			</li>
-			<li><span class="command"><strong>/lwc mode persist &lt;on|off&gt;</strong></span>- Persistent mode will let
-				you
-				perform your last command on multiple blocks, untill you turn it off.
-			</li>
-			<li><span class="command"><strong>/lwc mode droptransfer &lt;select|on|off|status&gt;</strong></span> -
-				Select:
-				Select the chest drops go to. On: Enable droptransfers. Off: Disable droptransfers. Status: Display the
-				status of the droptransfers.
-			</li>
-		</ul>
 	</div>
 
 	<h2 id="subdomains" class="scrolltarget">Our Subdomains and Pages</h2>

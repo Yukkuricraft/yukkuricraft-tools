@@ -37,7 +37,6 @@ async function createAccountsNode(accounts) {
 async function createMemberNode(hasDescription, member) {
 	let accountsArr = Array.isArray(member.mcAccounts) ? member.mcAccounts : [member.mcAccounts];
 	let accounts = await createAccountsNode(accountsArr);
-	console.log(accounts);
 
 	let row = $('<tr>');
 

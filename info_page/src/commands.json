@@ -80,7 +80,7 @@
     "displayName": "Chat commands",
     "commands": [
       {
-        "usage": [
+        "aliases": [
           "msg",
           "message",
           "w",
