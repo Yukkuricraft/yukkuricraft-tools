@@ -1,0 +1,34 @@
+$primary: #dc3545;
+$enable-responsive-font-sizes: true;
+$font-size-base: 1.2rem;
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+.container {
+  .scrolltarget:before {
+    height: 54px;
+    content: "";
+    display: block;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.command {
+  color: #70707f; /*#60606f*/
+}
+
+.yc-footer {
+  text-align: center;
+  font-size: 1rem;
+  color: #babfbd
+}
+
+#version {
+  float: right;
+}
+
+@import "~bootstrap/scss/bootstrap";
