@@ -1,0 +1,223 @@
+{
+  "general": {
+    "displayName": "General/Misc commands",
+    "commands": [
+      {
+        "aliases": "list",
+        "description": "See who is online",
+        "tags": [
+          "players",
+          "online"
+        ]
+      },
+      {
+        "aliases": "ontime",
+        "description": "Check your platime stats",
+        "tags": [
+          "stats"
+        ]
+      },
+      {
+        "aliases": "ping",
+        "description": "Check your ping time in ms!",
+        "tags": [
+          "ping",
+          "lag"
+        ]
+      },
+      {
+        "aliases": "hat",
+        "arguments": "<block>",
+        "description": "Hat yourself with the block you gave! Only works in creative worlds!",
+        "tags": [
+          "fun"
+        ]
+      }
+    ]
+  },
+  "tp": {
+    "displayName": "Teleport commands",
+    "commands": [
+      {
+        "aliases": "call",
+        "arguments": "<user>",
+        "description": "Request to teleport **to** the specified player. Said player will have to then accept the teleport request for it to complete.",
+        "tags": [
+          "teleport",
+          "tp"
+        ]
+      },
+      {
+        "aliases": [
+          "bring",
+          "tpa"
+        ],
+        "arguments": "<user>",
+        "description": "Use this after someone has requested a teleport to you to accept and bring them to your position.",
+        "tags": [
+          "teleport",
+          "tp",
+          "bring",
+          "tpa"
+        ]
+      },
+      {
+        "aliases": [
+          "return",
+          "back"
+        ],
+        "description": "Return to the last location before your last teleport.",
+        "tags": [
+          "teleport",
+          "tp",
+          "return",
+          "back"
+        ]
+      }
+    ]
+  },
+  "chat": {
+    "displayName": "Chat commands",
+    "commands": [
+      {
+        "aliases": [
+          "msg",
+          "message",
+          "w",
+          "pm",
+          "t",
+          "tell",
+          "whisper"
+        ],
+        "arguments": "<target> <message...>",
+        "description": "Private message a user.",
+        "tags": [
+          "chat",
+          "pm",
+          "reply",
+          "msg"
+        ]
+      },
+      {
+        "aliases": [
+          "r",
+          "reply"
+        ],
+        "arguments": "<message...>",
+        "description": "Shortcut command to reply to private messages. ",
+        "tags": [
+          "chat",
+          "pm",
+          "msg"
+        ]
+      },
+      {
+        "aliases": "me",
+        "arguments": "<message..>",
+        "description": "Send an action message.",
+        "tags": [
+          "chat",
+          "action",
+          "fun"
+        ]
+      }
+    ]
+  },
+  "lwc": {
+    "displayName": "LWC/Chest commands",
+    "commands": [
+      {
+        "aliases": "cpublic",
+        "description": "Creates a public protection. Anyone can use a Public protection, but no one can protect it.",
+        "tags": [
+          "lwc",
+          "chest",
+          "protection"
+        ]
+      },
+      {
+        "aliases": "cpassword",
+        "description": "Password-protect a block. Each time you login you need to enter the password to access it. (if someone else knows the password, they can access it too.",
+        "tags": [
+          "lwc",
+          "chest",
+          "protection"
+        ]
+      },
+      {
+        "aliases": "cprivate",
+        "description": "Create a private protection. Private means private: you can also allow other users or groups to access the block as well. This is done by adding them after \"private\". You can add more than one group and/or user per command. When you prefix a User or Group with an '@', this User/Group will be able to modify the block and add other users. They cannot disable the owner from modifying it.",
+        "tags": [
+          "lwc",
+          "chest",
+          "protection"
+        ]
+      },
+      {
+        "aliases": "cmodify",
+        "description": "Modify an existing protection, adding or removing users and/or groups. See /lwc create, the example for private protections. The same syntax is used for this command. There's an additional prefix however. Writing a '-' infront of a User or Group removes the access from the block.",
+        "tags": [
+          "lwc",
+          "chest",
+          "protection"
+        ]
+      },
+      {
+        "aliases": "cunlock",
+        "description": "Unlock a password-protected block.",
+        "tags": [
+          "lwc",
+          "chest",
+          "protection"
+        ]
+      },
+      {
+        "aliases": "cinfo",
+        "description": "Punch a protection to view information on it.",
+        "tags": [
+          "lwc",
+          "chest",
+          "protection"
+        ]
+      },
+      {
+        "aliases": "cremove",
+        "description": "Removes protection.",
+        "tags": [
+          "lwc",
+          "chest",
+          "protection"
+        ]
+      },
+      {
+        "aliases": "climits",
+        "description": "View the amount of protections you are allowed.",
+        "tags": [
+          "lwc",
+          "chest",
+          "protection"
+        ]
+      },
+      {
+        "aliases": "lwc mode persist",
+        "arguments": "<on|off>",
+        "description": "Persistent mode will let you perform your last command on multiple blocks, untill you turn it off.",
+        "tags": [
+          "lwc",
+          "chest",
+          "protection"
+        ]
+      },
+      {
+        "aliases": "lwc mode droptransfer",
+        "arguments": "<select|on|off|status>",
+        "description": "Select: Select the chest drops go to. On: Enable droptransfers. Off: Disable droptransfers. Status: Display the status of the droptransfers. ",
+        "tags": [
+          "lwc",
+          "chest",
+          "protection"
+        ]
+      }
+    ]
+  }
+}
