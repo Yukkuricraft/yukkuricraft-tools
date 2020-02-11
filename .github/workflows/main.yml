@@ -1,0 +1,23 @@
+name: Publish info page
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'info_page/**'
+
+jobs:
+  deploy:
+    name: Copy info_page/src to gh-pages branch
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Deploy
+      uses: s0/git-publish-subdir-action@v2.0.0
+      env:
+        REPO: self
+        BRANCH: gh-pages
+        FOLDER: info_page/src
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
