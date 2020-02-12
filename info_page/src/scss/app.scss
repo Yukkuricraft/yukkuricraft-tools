@@ -31,4 +31,34 @@ html {
   float: right;
 }
 
+//https://www.w3schools.com/howto/howto_css_parallax.asp
+.parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax-info {
+  background-image: url('../images/hakurei.png');
+  height: 600px;
+}
+
+.parallax-download {
+  background-image: url('../images/hakurei_inside.png');
+  height: 600px;
+}
+
+.parallax-text {
+  @extend .alert;
+  background-color: #4C4C4C3f;
+  color: white;
+}
+
+@media only screen and (max-device-width: 1366px) {
+  .parallax {
+    background-attachment: scroll;
+  }
+}
+
 @import "~bootstrap/scss/bootstrap";

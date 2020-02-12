@@ -3,7 +3,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-	entry: './src/app.js',
+	entry: {
+		'styling': './src/styling.js',
+		'info': './src/info/app.js',
+		'download': './src/download/download.js'
+	},
 	output: {
 		filename: '[name].js',
 		path: path.resolve(__dirname, 'dist')
@@ -24,6 +28,34 @@ module.exports = {
 				test: /\.html$/i,
 				use: ['file-loader?name=[name].[ext]', 'extract-loader', 'html-loader'],
 			},
+			{
+				test: /\.(png|svg|jpg|gif)$/,
+				use: {
+					loader: 'file-loader',
+					options: {
+						esModule: false, //https://github.com/peerigon/extract-loader/issues/67
+						outputPath: 'assets/images'
+					}
+				}
+			}
 		]
+	},
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				vendors: {
+					name: "vendors",
+					chunks: "initial",
+					test: /[\\/]node_modules[\\/]/,
+					priority: 10,
+					enforce: true
+				},
+				commons: {
+					name: "commons",
+					chunks: "initial",
+					minChunks: 2,
+				},
+			}
+		}
 	}
 };
