@@ -34,9 +34,7 @@ function createAccountsNode(accounts) {
 
 		let setRealUsername = function () {
 			mcUsername(account.uuid, account.name).then(name => {
-				console.log('Getting real name for ' + JSON.stringify(account));
 				textNode.data = ' ' + name;
-				console.log('Set real name for ' + name);
 			})
 		};
 
