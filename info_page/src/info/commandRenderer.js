@@ -20,10 +20,12 @@ function makeCommandNode(command, query) {
 
 		let args = typeof command.arguments !== 'undefined' ? ' ' + command.arguments : '';
 		let commandStr = '/' + aliasesStr + args;
+		let mdContent = $(md.render(command.description));
+		mdContent.find('img').attr('width', '100%');
 
 		return [
 			$(`<span class="command">`).append($('<strong>').text(commandStr)),
-			md.render(command.description)
+			mdContent
 		]
 	} else {
 		return []

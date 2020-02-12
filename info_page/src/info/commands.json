@@ -318,7 +318,7 @@
       "hsh_residents": {
         "displayName": "Residents",
         "menuName": "HSH residents",
-        "description": "Both invites and requests are a one time thing. They can't be reused. What instead if you have some home, and then have multiple people that live in that home. Wouldn't it be neat to be able to give them a permanent invite to that home? Residents solve this problem, they are like a permanent invite to a home that can also be used when the home owner is offline. For the players that are residents of the home, they use the goto command just like as if it was another invite.",
+        "description": "Both invites and requests are a one time thing. They can't be reused. What if you have a home that has multiple people living in it? Residents solve this problem, they are like a permanent invite to a home that can also be used when the home owner is offline. For the players that are residents of the home, they use the goto command just like as if it was another invite.",
         "commands": [
           {
             "aliases": "home residents",
