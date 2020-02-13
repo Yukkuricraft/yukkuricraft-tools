@@ -55,6 +55,12 @@ html {
   color: white;
 }
 
+@media (max-width: 576px) {
+  .smaller-sm-text {
+    font-size: 75%;
+  }
+}
+
 @media only screen and (max-device-width: 1366px) {
   .parallax {
     background-attachment: scroll;

@@ -74,9 +74,8 @@ function createMemberNode(hasDescription, member) {
 }
 
 function makeStaffNode(obj) {
-	let elem = $('<table>');
+	let elem = $('<table class="table smaller-sm-text">');
 	elem.id = 'staff-' + obj.id;
-	elem.addClass('table');
 
 	let colgroup = $('<colgroup>');
 
