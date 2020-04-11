@@ -4,17 +4,39 @@ on:
   push:
     branches:
       - master
+      - dev
     paths:
-      - 'info_page/dist/**'
+      - 'info_page/src/**'
 
 jobs:
   deploy:
-    name: Copy info_page/src to gh-pages branch
+    name: Build and deploy to gh-pages branch
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+		- name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
 
-    - name: Deploy
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Install
+      uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: install
+
+		- name: Deploy-Info-Dev
+      if: ${{ steps.extract_branch.outputs.branch }} == "dev"
+      uses: s0/git-publish-subdir-action@v2.0.0
+      env:
+        REPO: self
+        BRANCH: gh-pages-dev
+        FOLDER: info_page/dist
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Deploy-Info-Prod
+      if: ${{ steps.extract_branch.outputs.branch }} == "master"
       uses: s0/git-publish-subdir-action@v2.0.0
       env:
         REPO: self
