@@ -25,12 +25,12 @@ jobs:
     - name: Install
       uses: borales/actions-yarn@v2.0.0
       with:
-        cmd: install
+        cmd: --cwd info_page install
 
     - name: Build
       uses: borales/actions-yarn@v2.0.0
       with:
-        cmd: build
+        cmd: --cwd info_page build
 
     - name: Deploy-Info-Dev
       if: steps.extract_branch.outputs.branch == 'dev'
