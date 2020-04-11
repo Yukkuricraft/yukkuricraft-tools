@@ -1,3 +1,0 @@
-[submodule "secrets"]
-	path = secrets
-	url = git@github-yc-tools-secrets-read-only:remiscarlet/yukkuricraft-tools-secrets.git
