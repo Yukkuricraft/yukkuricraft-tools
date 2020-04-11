@@ -28,7 +28,7 @@ jobs:
         cmd: install
 
     - name: Deploy-Info-Dev
-      if: steps.extract_branch.outputs.branch == 'dev-noop'
+      if: steps.extract_branch.outputs.branch == 'dev'
       uses: s0/git-publish-subdir-action@v2.0.0
       env:
         REPO: self
