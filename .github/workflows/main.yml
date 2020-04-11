@@ -28,19 +28,10 @@ jobs:
         cmd: install
 
     - name: Deploy-Info-Dev
-      if: ${{ steps.extract_branch.outputs.branch }} == "dev"
+      if: steps.extract_branch.outputs.branch == "dev-noop"
       uses: s0/git-publish-subdir-action@v2.0.0
       env:
         REPO: self
         BRANCH: gh-pages-dev
-        FOLDER: info_page/dist
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Deploy-Info-Prod
-      if: ${{ steps.extract_branch.outputs.branch }} == "master"
-      uses: s0/git-publish-subdir-action@v2.0.0
-      env:
-        REPO: self
-        BRANCH: gh-pages
         FOLDER: info_page/dist
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
