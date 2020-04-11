@@ -30,3 +30,6 @@ jobs:
       uses: borales/actions-yarn@v2.0.0
       with:
         cmd: --cwd info_page build
+
+    - name: Yarn Test
+      run: echo "Where my tests at @katrix? :P"
