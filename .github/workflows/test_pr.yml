@@ -11,7 +11,7 @@ on:
 
 jobs:
   deploy:
-    name: Build info.yukkuricraft.net
+    name: Test PR with yarn
     runs-on: ubuntu-latest
     steps:
     - name: Extract branch name
