@@ -1,17 +1,18 @@
 import Vue from 'vue'
 import VueRouter from "vue-router";
+import VueI18n from "vue-i18n";
 
 import InfoPage from './pages/InfoPage'
 import RulesPage from './pages/RulesPage'
 import RanksStaffPage from './pages/RanksStaffPage'
 import CommandsPage from './pages/commands/CommandsPage'
-import DownloadGensoEn from "./pages/downloads/DownloadEn";
-import DownloadGensoJp from "./pages/downloads/DownloadJp";
+import DownloadGenso from "./pages/downloads/Download";
 import DownloadSurvival from "./pages/downloads/DownloadSurvival";
 
 import App from './App.vue'
 
 Vue.use(VueRouter);
+Vue.use(VueI18n);
 
 const router = new VueRouter({
 	base: '/',
@@ -38,14 +39,9 @@ const router = new VueRouter({
 			component: CommandsPage
 		},
 		{
-			path: '/downloads/gensokyo_en',
-			name: 'download_genso_en',
-			component: DownloadGensoEn
-		},
-		{
-			path: '/downloads/gensokyo_jp',
-			name: 'download_genso_jp',
-			component: DownloadGensoJp
+			path: '/downloads/gensokyo',
+			name: 'download_genso',
+			component: DownloadGenso
 		},
 		{
 			path: '/downloads/survival',

@@ -5,11 +5,8 @@
 			<p>A collection of information so you don't have to go looking for it elsewhere.</p>
 			<p class="lead">Server IP: mc.yukkuricraft.net</p>
 
-			<router-link :to="{'name': 'download_genso_en'}" v-slot="{ href, navigate }">
-				<a class="btn btn-primary" :href="href" @click="navigate">Map download (EN)</a>
-			</router-link>
-			<router-link :to="{'name': 'download_genso_jp'}" v-slot="{ href, navigate }">
-				<a class="btn btn-primary" :href="href" @click="navigate">Map download (JP)</a>
+			<router-link :to="{'name': 'download_genso'}" v-slot="{ href, navigate }">
+				<a class="btn btn-primary" :href="href" @click="navigate">Map download</a>
 			</router-link>
 			<router-link :to="{'name': 'download_survival'}" v-slot="{ href, navigate }">
 				<a class="btn btn-primary" :href="href" @click="navigate">Survival download</a>

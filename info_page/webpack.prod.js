@@ -22,8 +22,7 @@ module.exports = merge(common, {
 				'/rules',
 				'/ranks_staff',
 				'/commands',
-				'/downloads/gensokyo_en',
-				'/downloads/gensokyo_jp',
+				'/downloads/gensokyo',
 				'/downloads/survival'
 			],
 			renderer: new Renderer({
