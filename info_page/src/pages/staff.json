@@ -30,10 +30,12 @@
         },
         {
           "name": "msm595",
-          "mcAccounts": {
-            "name": "msm595",
-            "uuid": "9bbedf09-712d-4e0a-a241-4e946c63a22e"
-          },
+          "mcAccounts": [
+            {
+              "name": "msm595",
+              "uuid": "9bbedf09-712d-4e0a-a241-4e946c63a22e"
+            }
+          ],
           "discordAccount": null,
           "description": "The other owner who never comes on. Something something real adult responsibility things."
         }
@@ -65,10 +67,12 @@
         },
         {
           "name": "Teshno",
-          "mcAccounts": {
-            "name": "Teshno",
-            "uuid": "225895ef-fdaf-4403-ba6c-d4fe6fd6bdbc"
-          },
+          "mcAccounts": [
+            {
+              "name": "Teshno",
+              "uuid": "225895ef-fdaf-4403-ba6c-d4fe6fd6bdbc"
+            }
+          ],
           "discordAccount": "206917136373907456",
           "description": "cawfee"
         }
@@ -130,26 +134,32 @@
       "members": [
         {
           "name": "0utlaw_X",
-          "mcAccounts": {
-            "name": "0utlaw_X",
-            "uuid": "9a662948-ae8c-4eba-b945-ddefa459fc5a"
-          },
+          "mcAccounts": [
+            {
+              "name": "0utlaw_X",
+              "uuid": "9a662948-ae8c-4eba-b945-ddefa459fc5a"
+            }
+          ],
           "discordAccount": "260928370748030978"
         },
         {
           "name": "PhantomNerifes",
-          "mcAccounts": {
-            "name": "PhantomNerifes",
-            "uuid": "458c0c72-fdec-4f95-859e-e3e475efb226"
-          },
+          "mcAccounts": [
+            {
+              "name": "PhantomNerifes",
+              "uuid": "458c0c72-fdec-4f95-859e-e3e475efb226"
+            }
+          ],
           "discordAccount": "147985568280608768"
         },
         {
           "name": "Tewi_Inaba",
-          "mcAccounts": {
-            "name": "Tewi_Inaba",
-            "uuid": "d068bbb4-6280-4ddf-8c59-f1ee0b1af927"
-          },
+          "mcAccounts": [
+            {
+              "name": "Tewi_Inaba",
+              "uuid": "d068bbb4-6280-4ddf-8c59-f1ee0b1af927"
+            }
+          ],
           "discordAccount": "168909421064355842"
         },
         {
@@ -168,10 +178,12 @@
         },
         {
           "name": "Tysonizer",
-          "mcAccounts": {
-            "name": "Tysonizer",
-            "uuid": "7b98dcce-f94b-4433-9b42-44db6e1d843a"
-          },
+          "mcAccounts": [
+            {
+              "name": "Tysonizer",
+              "uuid": "7b98dcce-f94b-4433-9b42-44db6e1d843a"
+            }
+          ],
           "discordAccount": "143486485511929857"
         }
       ]
@@ -183,42 +195,52 @@
       "members": [
         {
           "name": "Alayosho",
-          "mcAccounts": {
-            "name": "Alayosho",
-            "uuid": "8d73b291-4123-4698-b21d-0bc3bdd14e29"
-          },
+          "mcAccounts": [
+            {
+              "name": "Alayosho",
+              "uuid": "8d73b291-4123-4698-b21d-0bc3bdd14e29"
+            }
+          ],
           "discordAccount": "157366896121872384"
         },
         {
           "name": "Eiburine",
-          "mcAccounts": {
-            "name": "Eiburine",
-            "uuid": "c1f44a9f-f06c-4700-a78c-001074fb33f2"
-          },
+          "mcAccounts": [
+            {
+              "name": "Eiburine",
+              "uuid": "c1f44a9f-f06c-4700-a78c-001074fb33f2"
+            }
+          ],
           "discordAccount": "147909571430711296"
         },
         {
           "name": "KokoNuttz",
-          "mcAccounts": {
-            "name": "KokoNuttz",
-            "uuid": "e18aa899-1c62-41ad-acc4-2ef50e46114a"
-          },
+          "mcAccounts": [
+            {
+              "name": "KokoNuttz",
+              "uuid": "e18aa899-1c62-41ad-acc4-2ef50e46114a"
+            }
+          ],
           "discordAccount": "201939654239322113"
         },
         {
           "name": "qscgukp",
-          "mcAccounts": {
-            "name": "qscgukp",
-            "uuid": "04fdd713-7153-40a3-a6a5-f7d69be4f63b"
-          },
+          "mcAccounts": [
+            {
+              "name": "qscgukp",
+              "uuid": "04fdd713-7153-40a3-a6a5-f7d69be4f63b"
+            }
+          ],
           "discordAccount": "217449039447195649"
         },
         {
           "name": "Redleaf64",
-          "mcAccounts": {
-            "name": "Redleaf64",
-            "uuid": "a06791c1-5ccd-4894-9307-71818e119756"
-          },
+          "mcAccounts": [
+            {
+              "name": "Redleaf64",
+              "uuid": "a06791c1-5ccd-4894-9307-71818e119756"
+            }
+          ],
           "discordAccount": "193195158898999316"
         }
       ]
@@ -230,10 +252,12 @@
       "members": [
         {
           "name": "S121",
-          "mcAccounts": {
-            "name": "S_121",
-            "uuid": "10e9a380-6524-44b4-88b1-ee25514b5cf9"
-          },
+          "mcAccounts": [
+            {
+              "name": "S_121",
+              "uuid": "10e9a380-6524-44b4-88b1-ee25514b5cf9"
+            }
+          ],
           "discordAccount": "265758981094506497",
           "description": "RP mod"
         }
