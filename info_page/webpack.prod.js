@@ -27,7 +27,7 @@ module.exports = merge(common, {
 				'/downloads/survival'
 			],
 			renderer: new Renderer({
-				headless: false,
+				headless: true,
 				renderAfterDocumentEvent: 'render-event'
 			}),
 		}),
