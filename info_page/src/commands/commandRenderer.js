@@ -1,5 +1,4 @@
 import $ from "jquery";
-import cmds from "./commands";
 import markdownIt from "markdown-it"
 
 const md = markdownIt({linkify: true, typographer: true});
@@ -78,10 +77,26 @@ function createSubgroups(level, subgroup, query) {
 
 			if (commandList.length) {
 				commandItems.push(...commandList);
-				dropdownItems.push($('<a class="dropdown-item">')
-					.attr('href', '#commands-' + id)
-					.text(subgroup[id].menuName));
-				dropdownItems.push(...innerDropdownItems);
+
+				let listItem = $('<li>');
+
+				if (innerDropdownItems.length) {
+					let expand = $('<a data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">')
+						.attr('href', '#commandsSidebar-' + id)
+						.text(subgroup[id].menuName);
+					let innerList = $('<ul class="collapse list-unstyled">').attr('id', 'commandsSidebar-' + id)
+					innerList.append(innerDropdownItems)
+
+					listItem.append(expand, innerList)
+				} else {
+					listItem.append(
+						$('<a>')
+							.attr('href', '#commands-' + id)
+							.text(subgroup[id].menuName)
+					)
+				}
+
+				dropdownItems.push(listItem);
 			}
 		}
 	}
@@ -89,20 +104,20 @@ function createSubgroups(level, subgroup, query) {
 	return [commandItems, dropdownItems]
 }
 
-function renderCommandList(query) {
-	let navbarCommandsDropdown = $('#navbar-commands-dropdown');
+function renderCommandList(commands, query) {
+	let sidebarContent = $('#sidebarContent');
 	let commandGroups = $('#commandGroups');
-	navbarCommandsDropdown.empty();
+	sidebarContent.empty();
 	commandGroups.empty();
 
-	let [commandNodes, dropdownNodes] = createSubgroups(0, cmds, query);
+	let [commandNodes, dropdownNodes] = createSubgroups(0, commands, query);
 
 	commandGroups.append(commandNodes);
-	navbarCommandsDropdown.append(dropdownNodes);
+	sidebarContent.append(dropdownNodes);
 }
 
-export function createCommandsList() {
-	renderCommandList('');
+export function createCommandsList(commands) {
+	renderCommandList(commands, '');
 
-	$('#commandsSearch').on('input', e => renderCommandList(e.target.value))
+	$('#commandsSearch').on('input', e => renderCommandList(commands, e.target.value))
 }

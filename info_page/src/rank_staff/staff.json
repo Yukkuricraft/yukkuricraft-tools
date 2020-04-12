@@ -222,6 +222,22 @@
           "discordAccount": "193195158898999316"
         }
       ]
+    },
+    {
+      "id": "misc",
+      "displayName": "Misc",
+      "hasDescription": true,
+      "members": [
+        {
+          "name": "S121",
+          "mcAccounts": {
+            "name": "S_121",
+            "uuid": "10e9a380-6524-44b4-88b1-ee25514b5cf9"
+          },
+          "discordAccount": "265758981094506497",
+          "description": "RP mod"
+        }
+      ]
     }
   ]
 }

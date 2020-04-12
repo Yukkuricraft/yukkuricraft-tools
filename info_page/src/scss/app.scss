@@ -1,9 +1,10 @@
-$primary: #fd7e14;
+$primary: #e56a00;
 $enable-responsive-font-sizes: true;
 $font-size-base: 1.2rem;
 
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
+@import "sidebar";
 
 .container {
   .scrolltarget:before {
@@ -34,7 +35,7 @@ html {
 //https://www.w3schools.com/howto/howto_css_parallax.asp
 .parallax {
   background-attachment: fixed;
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -46,6 +47,26 @@ html {
 
 .parallax-download {
   background-image: url('../images/hakurei_inside.jpg');
+  height: 600px;
+}
+
+.parallax-remicare {
+  background-image: url('../images/fallen_shrine.jpg');
+  height: 600px;
+}
+
+.parallax-people {
+  background-image: url('../images/people.jpg');
+  height: 600px;
+}
+
+.parallax-rules {
+  background-image: url('../images/rules.jpg');
+  height: 600px;
+}
+
+.parallax-commands {
+  background-image: url('../images/commands.jpg');
   height: 600px;
 }
 

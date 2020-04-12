@@ -1,0 +1,44 @@
+{
+  "tp": {
+    "displayName": "Teleport commands",
+    "menuName": "Teleport",
+    "commands": [
+      {
+        "aliases": "call",
+        "arguments": "<user>",
+        "description": "Request to teleport **to** the specified player. Said player will have to then accept the teleport request for it to complete.",
+        "tags": [
+          "teleport",
+          "tp"
+        ]
+      },
+      {
+        "aliases": [
+          "bring",
+          "tpa"
+        ],
+        "arguments": "<user>",
+        "description": "Use this after someone has requested a teleport to you to accept and bring them to your position.",
+        "tags": [
+          "teleport",
+          "tp",
+          "bring",
+          "tpa"
+        ]
+      },
+      {
+        "aliases": [
+          "return",
+          "back"
+        ],
+        "description": "Return to the last location before your last teleport.",
+        "tags": [
+          "teleport",
+          "tp",
+          "return",
+          "back"
+        ]
+      }
+    ]
+  }
+}

@@ -1,18 +1,18 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-
 module.exports = {
 	entry: {
 		'styling': './src/styling.js',
-		'info': './src/info/app.js',
-		'download': './src/download/download.js'
+		'info': './src/app.js',
+		'rank_staff': './src/rank_staff/rank_staff.js',
+		'commands': './src/commands/commands.js'
 	},
 	output: {
 		filename: '[name].js',
 		path: path.resolve(__dirname, 'dist')
 	},
-	plugins: [new MiniCssExtractPlugin(), new CopyPlugin([{from: 'src/images', to: 'assets/images'}])],
+	plugins: [new MiniCssExtractPlugin(), new CopyPlugin([{from: 'src/commands/images', to: 'assets/images'}])],
 	module: {
 		rules: [
 			{
@@ -21,7 +21,14 @@ module.exports = {
 					MiniCssExtractPlugin.loader,
 					'css-loader',
 					'postcss-loader',
-					'sass-loader'
+					{
+						loader: 'sass-loader',
+						options: {
+							sassOptions: {
+								functions: require('chromatic-sass')
+							}
+						}
+					}
 				]
 			},
 			{

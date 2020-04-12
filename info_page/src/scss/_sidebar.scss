@@ -1,0 +1,88 @@
+//https://bootstrapious.com/p/bootstrap-sidebar
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+$sidebar-width: 250px;
+
+$sidebar-background: chromatic-color-darken($primary, 0.3);
+$sidebar-header-background: chromatic-color-darken($primary, 0.5);
+$sidebar-active-background: chromatic-color-darken($primary, 0.4);
+
+.sidebar-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.sidebar {
+  width: $sidebar-width;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+
+  background: $sidebar-background;
+  color: #fff;
+  transition: all 0.3s;
+
+  a {
+    color: #fff;
+  }
+}
+
+.sidebar.active {
+  margin-left: -$sidebar-width
+}
+
+.sidebar-content {
+  width: calc(100% - #{$sidebar-width});
+  min-height: 100vh;
+  transition: all 0.3s;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.sidebar-content.active {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    margin-left: -$sidebar-width;
+  }
+  .sidebar.active {
+    margin-left: 0;
+  }
+  .sidebar-content {
+    width: 100%;
+  }
+  .sidebar-content.active {
+    width: calc(100% - #{$sidebar-width});
+  }
+}
+
+.sidebar .sidebar-header {
+  padding: 0.5rem 1rem;
+  background: $sidebar-header-background;
+}
+
+.sidebar ul p {
+  color: #fff;
+  padding: 10px;
+}
+
+.sidebar ul li a {
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+}
+.sidebar ul li a:hover {
+  color: $primary;
+  background: #fff;
+}
+
+.sidebar ul li.active > a, a[aria-expanded="true"] {
+  color: #fff;
+  background: $sidebar-active-background;
+}

@@ -1,0 +1,39 @@
+{
+  "general": {
+    "displayName": "General/Misc commands",
+    "menuName": "General/Misc",
+    "commands": [
+      {
+        "aliases": "list",
+        "description": "See who is online",
+        "tags": [
+          "players",
+          "online"
+        ]
+      },
+      {
+        "aliases": "ontime",
+        "description": "Check your platime stats",
+        "tags": [
+          "stats"
+        ]
+      },
+      {
+        "aliases": "ping",
+        "description": "Check your ping time in ms!",
+        "tags": [
+          "ping",
+          "lag"
+        ]
+      },
+      {
+        "aliases": "hat",
+        "arguments": "<block>",
+        "description": "Hat yourself with the block you gave! Only works in creative worlds!",
+        "tags": [
+          "fun"
+        ]
+      }
+    ]
+  }
+}
