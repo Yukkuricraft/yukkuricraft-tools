@@ -7,6 +7,8 @@ on:
       - dev
     paths:
       - 'info_page/src/**'
+      - 'info_page/*'
+      - '!info_page/README.md'
       - '.github/workflows/main.yml'
 
 jobs:

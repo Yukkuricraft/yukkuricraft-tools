@@ -6,7 +6,9 @@ on:
       - master
       - dev
     paths:
-      - 'info_page/**'
+      - 'info_page/src/**'
+      - 'info_page/*'
+      - '!info_page/README.md'
       - '.github/workflows/**'
 
 jobs:
