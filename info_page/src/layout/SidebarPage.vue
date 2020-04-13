@@ -5,7 +5,7 @@
 		</nav>
 
 		<div class="sidebar-content" :class="{active: sidebarActive}">
-			<info-header>
+			<info-header :in-container="false">
 				<template v-slot:top>
 					<button @click="sidebarActive = !sidebarActive" class="btn" type="button" aria-controls="sidebar-nav"
 							aria-expanded="false" aria-label="Toggle sidebar">
