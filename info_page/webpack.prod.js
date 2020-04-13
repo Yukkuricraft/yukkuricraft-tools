@@ -10,6 +10,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
 
+let isCI = typeof process.env.CI !== 'undefined' && process.env.CI
+
 module.exports = merge(common, {
 	mode: 'production',
 	devtool: 'source-map',
@@ -27,7 +29,8 @@ module.exports = merge(common, {
 			],
 			renderer: new Renderer({
 				headless: true,
-				renderAfterDocumentEvent: 'render-event'
+				renderAfterDocumentEvent: 'render-event',
+				executablePath: isCI ? 'google-chrome-unstable' : undefined
 			}),
 		}),
 		new MiniCssExtractPlugin(),
