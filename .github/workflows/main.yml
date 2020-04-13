@@ -23,13 +23,13 @@ jobs:
       uses: actions/checkout@master
 
     - name: Yarn Install
-      uses: borales/actions-yarn@v2.0.0
+      uses: ianwalter/puppeteer@v2.0.0
       with:
-        cmd: --cwd info_page install
+        args: yarn --cwd info_page install
     - name: Yarn Build
-      uses: borales/actions-yarn@v2.0.0
+      uses: ianwalter/puppeteer@v2.0.0
       with:
-        cmd: --cwd info_page build
+        args: yarn --cwd info_page build
 
     - name: Deploy-Info-Dev
       if: steps.extract_branch.outputs.branch == 'dev'
