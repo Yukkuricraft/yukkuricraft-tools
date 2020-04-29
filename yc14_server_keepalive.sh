@@ -4,7 +4,7 @@ NAME=Yukkuricraft
 SCREEN_NAME=yukkuricraft14
 JAR_FILE="paper-238.jar"
 JAR_PATH="/home/minecraft/YC/YukkuriCraft"
-RAM=24G
+RAM=16G
 
 ###################
 
