@@ -29,11 +29,11 @@ CONFIGS = [
         # Special Notes:
         # - Given the "rough"/"guesstimating" nature of the time calculations/thresholds, this script becomes less effective the older the backups get. Particularly once you get into year-long ranges.
         "SIEVE_CONFIG": {
-            '4h': 6 * 3, # 18: three days worth of standard 4 hour backups
-            '12h': 2 * 3, # 6: three days worth of 12 hours
-            '1d': 7 * 3, # 21: three weeks worth of backups all minimum 24 hours apart
-            '1w': 4 * 2, #  8: 2 months worth, all 1 week apart
-            '6m': 4,     #  4: 2 years, all 6 months apart
+            "4h": 6 * 3,  # 18: three days worth of standard 4 hour backups
+            "12h": 2 * 3,  # 6: three days worth of 12 hours
+            "1d": 7 * 3,  # 21: three weeks worth of backups all minimum 24 hours apart
+            "1w": 4 * 2,  #  8: 2 months worth, all 1 week apart
+            "6m": 4,  #  4: 2 years, all 6 months apart
         },
         "FOLDER_CONFIG": {
             # SEARCH_FOLDERS are folders that contain "folders to clean up". This should point at the "worlds" folder and the "plugins" folder, eg.
@@ -44,23 +44,23 @@ CONFIGS = [
                 "/media/backups/YukkuriCraft/PermaBackups/remi_backups/worlds",
             ],
             # BLOCKED_SEARCH_FOLDERS are explicitly blacklisted "search folders". That is to say, any folder found inside a BLOCKED_SEARCH_FOLDERS folder will be blacklisted.
-            "BLOCKED_SEARCH_FOLDERS": [
-            ],
+            "BLOCKED_SEARCH_FOLDERS": [],
             # SINGLE_FOLDERS is basically a single folder which contains backups to clean up. This is for one-off backup locations or the like.
             "SINGLE_FOLDERS": [
-                #"/media/backups/YukkuriCraft/PermaBackups/remi_backups/worlds/FF6",
+                # "/media/backups/YukkuriCraft/PermaBackups/remi_backups/worlds/FF6",
             ],
             # BLOCKED_SINGLE_FOLDERS are an explicit list of blacklisted folders. This the single-folder version of BLOCKED_SEARCH_FOLDERS
-            "BLOCKED_SINGLE_FOLDERS": [
-            ],
+            "BLOCKED_SINGLE_FOLDERS": [],
         },
     },
 ]
 
-MINIMUM_BACKUP_SIZE = 100 # bytes
+MINIMUM_BACKUP_SIZE = 100  # bytes
+
 
 def convertToEpoch(dt):
-    return (dt - datetime(1970,1,1)).total_seconds()
+    return (dt - datetime(1970, 1, 1)).total_seconds()
+
 
 def parseConf(config):
     acro_map = {
@@ -76,14 +76,15 @@ def parseConf(config):
     for rule_str, count in config.items():
         delta_val = 0
         for acro, sec in acro_map.items():
-            r = re.compile('(\d+)%s' % acro)
+            r = re.compile("(\d+)%s" % acro)
             matches = r.search(rule_str)
             if matches != None:
                 delta_val += sec * int(matches.group(1))
-        print(rule_str, delta_val)
+        print (rule_str, delta_val)
         rules[delta_val] = count
 
     return rules
+
 
 def deleteInvalidSizeBackups(path):
     global MINIMUM_BACKUP_SIZE
@@ -93,6 +94,7 @@ def deleteInvalidSizeBackups(path):
         full_path = "%s/%s" % (path, fname)
         if os.path.getsize(full_path) < MINIMUM_BACKUP_SIZE:
             os.remove(full_path)
+
 
 def genFileToEpochMap(path):
     global MINIMUM_BACKUP_SIZE
@@ -128,27 +130,27 @@ def returnBackupsToKeep(conf, file_to_epoch_map):
 
     for rule, count in conf_ordered:
         slots[rule] = []
-        #print
-        #print(slots)
-        #print(rule, count)
+        # print
+        # print(slots)
+        # print(rule, count)
 
         saved = 0
 
         for tup in file_epoch_list[index:]:
-            #print(tup)
+            # print(tup)
             path, timestamp = tup
             age = now - timestamp
             prev_backup_timestamp = slots[rule][-1][1] if len(slots[rule]) >= 1 else -1
             delta_from_prev_backup = prev_backup_timestamp - timestamp
-            #print("Prev backup from: ", prev_backup_timestamp, "# Secs since prev:", delta_from_prev_backup)
+            # print("Prev backup from: ", prev_backup_timestamp, "# Secs since prev:", delta_from_prev_backup)
             if delta_from_prev_backup >= rule or prev_backup_timestamp == -1:
-                #print("This one good for backup:", path, age)
+                # print("This one good for backup:", path, age)
                 slots[rule].append(tup)
 
             index += 1
             if len(slots[rule]) >= count:
-                #print("Got all backups in %s's category's slots" % (rule))
-                #for item in slots[rule]:
+                # print("Got all backups in %s's category's slots" % (rule))
+                # for item in slots[rule]:
                 #    print(repr(item))
                 break
 
@@ -157,8 +159,9 @@ def returnBackupsToKeep(conf, file_to_epoch_map):
 
     return slots
 
+
 def getOldestTimestamp(slots):
-    rule_strings = list(slots.keys());
+    rule_strings = list(slots.keys())
     rule_strings.sort(reverse=True)
 
     min_timestamp = None
@@ -168,7 +171,7 @@ def getOldestTimestamp(slots):
             for tup in tups:
                 timestamp = tup[1]
                 if min_timestamp == None or timestamp < min_timestamp:
-                    #print ("==",tup[0], timestamp)
+                    # print ("==",tup[0], timestamp)
                     min_timestamp = timestamp
             # Can do a break because we go from largest rule_string to smallest, meaning any subsequent loop must necessarily be a smaller rule_string, and therefore
             # the backups in the subsequent rule_string categories must be newer than the current category.
@@ -176,30 +179,33 @@ def getOldestTimestamp(slots):
 
     return min_timestamp
 
+
 def findAllFilesToDelete(slots, file_to_epoch_map):
     oldest_timestamp_to_keep = getOldestTimestamp(slots)
     all_backups = file_to_epoch_map.keys()
     all_backups.sort(reverse=True)
 
     # Grab all tups in each rule_string category. But first filter out any rule_string categories that are empty.
-    to_save_tmp = map(lambda tups: [tup[0] for tup in tups],
-                      filter(lambda tups: len(tups) > 0,
-                             slots.values()))
+    to_save_tmp = map(
+        lambda tups: [tup[0] for tup in tups],
+        filter(lambda tups: len(tups) > 0, slots.values()),
+    )
     to_save = set(chain.from_iterable(to_save_tmp))
     to_delete = []
 
     for backup in all_backups:
         timestamp = file_to_epoch_map[backup]
         if timestamp < oldest_timestamp_to_keep:
-            #print "Breaking due to oldness - %s" % backup
+            # print "Breaking due to oldness - %s" % backup
             break
         if backup in to_save:
-            #print "Save this one - %s" % backup
+            # print "Save this one - %s" % backup
             continue
-        #print "Deleting %s" % backup
+        # print "Deleting %s" % backup
         to_delete.append(backup)
 
     return to_delete
+
 
 def consolidateFolderConf(folder_conf):
     SEARCH_FOLDERS = folder_conf["SEARCH_FOLDERS"]
@@ -214,12 +220,16 @@ def consolidateFolderConf(folder_conf):
     for folder_root in SEARCH_FOLDERS:
         root = folder_root.rstrip("/")
         folder_names = os.listdir(root)
-        all_folders.extend(map(lambda folder_name: "%s/%s" % (folder_root, folder_name), folder_names))
+        all_folders.extend(
+            map(lambda folder_name: "%s/%s" % (folder_root, folder_name), folder_names)
+        )
 
     for folder_root in BLOCKED_SEARCH_FOLDERS:
         root = folder_root.rstrip("/")
         folder_names = os.listdir(root)
-        blocked_folders.extend(map(lambda folder_name: "%s/%s" % (folder_root, folder_name), folder_names))
+        blocked_folders.extend(
+            map(lambda folder_name: "%s/%s" % (folder_root, folder_name), folder_names)
+        )
 
     all_folders.extend(SINGLE_FOLDERS)
     blocked_folders.extend(BLOCKED_SINGLE_FOLDERS)
@@ -227,6 +237,7 @@ def consolidateFolderConf(folder_conf):
     all_folders = filter(lambda folder: folder not in blocked_folders, all_folders)
 
     return all_folders
+
 
 def runConfig(sieve_conf, folder_conf):
     flattened_folder_conf = consolidateFolderConf(folder_conf)
@@ -236,7 +247,7 @@ def runConfig(sieve_conf, folder_conf):
         print "LOOKING AT %s" % folder_path
         deleteInvalidSizeBackups(folder_path)
         file_to_epoch_map = genFileToEpochMap(folder_path)
-        #print(repr(file_to_epoch_map))
+        # print(repr(file_to_epoch_map))
 
         slots = returnBackupsToKeep(sieve_conf, file_to_epoch_map)
         to_delete = findAllFilesToDelete(slots, file_to_epoch_map)
@@ -252,5 +263,6 @@ def run():
         sieve_conf = parseConf(config["SIEVE_CONFIG"])
         runConfig(sieve_conf, config["FOLDER_CONFIG"])
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     run()
