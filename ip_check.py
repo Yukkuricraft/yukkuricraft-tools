@@ -8,12 +8,11 @@ import getpass
 import smtplib
 import requests
 import argparse
+import logging
 import secrets.ip_check_secrets as secrets
 
 from typing import Dict, Optional
 from email.message import EmailMessage
-
-import logging
 
 
 class IP_Checker:
@@ -155,6 +154,9 @@ class IP_Checker:
             sys.exit(1)
         except EmailFailedException as e:
             self.__log(e)
+            sys.exit(1)
+        except Exception as e:
+            self.__log(f"Uncaught Exception: {e}")
             sys.exit(1)
 
 
