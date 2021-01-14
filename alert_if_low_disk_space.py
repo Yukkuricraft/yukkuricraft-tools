@@ -9,6 +9,7 @@ import secrets.discord_secrets as secrets
 DEVICES = {
     "Main Disk": ("/", 85.0), # Dict[str, Tuple[str, float]] - Key is human readable name. Tuple vals are path and disk usage percent to alert on
     #"Raid Backup Disk": ("/media/raidbackups", 85.0),
+    "Primary Backup Disk": ("/media/backups-primary", 85.0),
     "Failover Backup Disk": ("/media/backups", 98.0),
 }
 
