@@ -41,8 +41,8 @@ CONFIGS = [
             # Note: We only search with a depth of 1. That is to say, if you have a folder with folders you want cleaned that's two levels deep, we will not account for it.
             # TODO: I should make this configured from same ENV vars as the backup script
             "SEARCH_FOLDERS": [
-                "/media/backups-primary/YukkuriCraft/PermaBackups/remi_backups/plugins",
-                "/media/backups-primary/YukkuriCraft/PermaBackups/remi_backups/worlds",
+                "/media/backups-primary/YukkuriCraft/plugins",
+                "/media/backups-primary/YukkuriCraft/worlds",
             ],
             # BLOCKED_SEARCH_FOLDERS are explicitly blacklisted "search folders". That is to say, any folder found inside a BLOCKED_SEARCH_FOLDERS folder will be blacklisted.
             "BLOCKED_SEARCH_FOLDERS": [],

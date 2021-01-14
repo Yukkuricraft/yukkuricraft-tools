@@ -9,8 +9,8 @@ containsElement () {
 
 SCRIPT_PATH=$(dirname $(readlink -f $0))
 source $SCRIPT_PATH/secrets/backer_upper_secrets
-WORLDS_BACKUP_DIR=$PERMANENT_BACKUP_DIR/remi_backups/worlds
-PLUGINS_BACKUP_DIR=$PERMANENT_BACKUP_DIR/remi_backups/plugins
+WORLDS_BACKUP_DIR=$PERMANENT_BACKUP_DIR/worlds
+PLUGINS_BACKUP_DIR=$PERMANENT_BACKUP_DIR/plugins
 
 # This assumes the screen name created by /etc/init.d/minecraft is "yukkuricraft" as defined in that file.
 SCREENNAME="yukkuricraft"
