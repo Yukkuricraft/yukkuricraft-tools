@@ -24,7 +24,8 @@ GCS_UPLOAD_URI=$GCS_BUCKET_URI/$(date +"%Y-%m-%d")
 
 for WORLD in "${WORLDS_TO_BACKUP[@]}"; do
     BACKUP_PATH="$WORLDS_BACKUP_DIR/$WORLD"
-    NEWEST_FILE=$(ls -t $BACKUP_PATH | head -1)
+    # Get second oldest file just incase the "newest" is a backup that's currently being made
+    NEWEST_FILE=$(ls -t $BACKUP_PATH | sort | tail -n 2 | head -1)
 
     log "Uploading $NEWEST_FILE to GCS..."
     gsutil cp $BACKUP_PATH/$NEWEST_FILE $GCS_UPLOAD_URI/worlds/
