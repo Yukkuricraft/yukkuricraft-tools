@@ -7,6 +7,25 @@ import time
 from datetime import datetime
 from itertools import chain
 
+import logging
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+formatter = logging.Formatter("[%(asctime)s][%(levelname)s] %(message)s")
+
+stream_handler = logging.StreamHandler()
+stream_handler.setLevel(logging.DEBUG)
+stream_handler.setFormatter(formatter)
+
+log_path = "/var/log/crons/backup_cleaner.log"
+file_handler = logging.FileHandler(log_path)
+file_handler.setLevel(logging.INFO)
+file_handler.setFormatter(formatter)
+
+logger.addHandler(stream_handler)
+logger.addHandler(file_handler)
+
+
 # This is our backup cleaner script.
 # This script makes no strong guarantees other than that:
 # - Each backup in its own category is a minimum of `RULE_STRING` time apart from each other backup in its category
@@ -81,7 +100,7 @@ def parseConf(config):
             matches = r.search(rule_str)
             if matches != None:
                 delta_val += sec * int(matches.group(1))
-        print (rule_str, delta_val)
+        logger.debug(rule_str, delta_val)
         rules[delta_val] = count
 
     return rules
@@ -108,6 +127,9 @@ def genFileToEpochMap(path):
         r = re.compile(r"\d{4}-\d{2}-\d{2}_\d{2}-\d{2}")
         result = r.search(fname)
 
+        if result is None:
+            logger.warning("Could not parse filename: %s" % full_path)
+            continue
         timestamp = result.group()
         epoch_timestamp = convertToEpoch(datetime.strptime(timestamp, "%Y-%m-%d_%H-%M"))
 
@@ -131,28 +153,22 @@ def returnBackupsToKeep(conf, file_to_epoch_map):
 
     for rule, count in conf_ordered:
         slots[rule] = []
-        # print
-        # print(slots)
-        # print(rule, count)
 
         saved = 0
 
         for tup in file_epoch_list[index:]:
-            # print(tup)
             path, timestamp = tup
             age = now - timestamp
             prev_backup_timestamp = slots[rule][-1][1] if len(slots[rule]) >= 1 else -1
             delta_from_prev_backup = prev_backup_timestamp - timestamp
-            # print("Prev backup from: ", prev_backup_timestamp, "# Secs since prev:", delta_from_prev_backup)
+            logger.debug("Prev backup from: %s # Secs since prev: %s" % (prev_backup_timestamp, delta_from_prev_backup))
             if delta_from_prev_backup >= rule or prev_backup_timestamp == -1:
-                # print("This one good for backup:", path, age)
+                logger.debug("This one good for backup: %s %s" % (path, age))
                 slots[rule].append(tup)
 
             index += 1
             if len(slots[rule]) >= count:
-                # print("Got all backups in %s's category's slots" % (rule))
-                # for item in slots[rule]:
-                #    print(repr(item))
+                logger.debug("Got all backups in %s's category's slots" % (rule))
                 break
 
         if index > total_backups:
@@ -172,7 +188,6 @@ def getOldestTimestamp(slots):
             for tup in tups:
                 timestamp = tup[1]
                 if min_timestamp == None or timestamp < min_timestamp:
-                    # print ("==",tup[0], timestamp)
                     min_timestamp = timestamp
             # Can do a break because we go from largest rule_string to smallest, meaning any subsequent loop must necessarily be a smaller rule_string, and therefore
             # the backups in the subsequent rule_string categories must be newer than the current category.
@@ -197,12 +212,12 @@ def findAllFilesToDelete(slots, file_to_epoch_map):
     for backup in all_backups:
         timestamp = file_to_epoch_map[backup]
         if timestamp < oldest_timestamp_to_keep:
-            # print "Breaking due to oldness - %s" % backup
+            logger.debug("Breaking due to oldness - %s" % backup)
             break
         if backup in to_save:
-            # print "Save this one - %s" % backup
+            logger.debug("Save this one - %s" % backup)
             continue
-        # print "Deleting %s" % backup
+        logger.info("Deleting %s" % backup)
         to_delete.append(backup)
 
     return to_delete
@@ -243,18 +258,16 @@ def consolidateFolderConf(folder_conf):
 def runConfig(sieve_conf, folder_conf):
     flattened_folder_conf = consolidateFolderConf(folder_conf)
     for folder_path in flattened_folder_conf:
-        print
-        print "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
-        print "LOOKING AT %s" % folder_path
+        logger.info("")
+        logger.info("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+        logger.info("Cleaning folder: %s" % folder_path)
         deleteInvalidSizeBackups(folder_path)
         file_to_epoch_map = genFileToEpochMap(folder_path)
-        # print(repr(file_to_epoch_map))
 
         slots = returnBackupsToKeep(sieve_conf, file_to_epoch_map)
         to_delete = findAllFilesToDelete(slots, file_to_epoch_map)
 
         for backup_to_delete in to_delete:
-            print backup_to_delete
             os.remove(backup_to_delete)
 
 
