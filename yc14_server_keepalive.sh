@@ -1,8 +1,8 @@
 #!/bin/bash
 
 NAME=Yukkuricraft
-SCREEN_NAME=yukkuricraft14
-JAR_FILE="paper-238.jar"
+SCREEN_NAME=yukkuricraft17
+JAR_FILE="paper-1.17-75.jar"
 JAR_PATH="/home/minecraft/YC/YukkuriCraft"
 RAM=16G
 
@@ -26,8 +26,12 @@ cd $JAR_PATH
 screen -dmS $SCREEN_NAME \
         java -Xms${RAM} -Xmx${RAM} \
         -Duser.dir=${JAR_PATH} \
-        -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 \
-        -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled \
-        -XX:-UseBiasedLocking -XX:+ExplicitGCInvokesConcurrent \
-        -Xss8m \
-        -jar "$JAR_PATH/$JAR_FILE"
+        -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 \
+        -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC \ 
+        -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 \
+        -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 \
+        -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 \
+        -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 \
+        -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 \
+        -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true \
+        -jar "$JAR_PATH/$JAR_FILE" nogui
