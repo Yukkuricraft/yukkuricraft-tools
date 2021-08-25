@@ -25,7 +25,7 @@ LAST_CHECKED=$(cat $STATUS_CHECK_FILE)
 if [ -z "$LAST_CHECKED" ]; then
     # First time we're confirming Miko is down. Log timestamp.
     log "Detected Miko being down for the first time. Logging. Will restart if still down in $MIN_COOLDOWN_TO_RESTART seconds."
-    log $NOW > $STATUS_CHECK_FILE
+    echo $NOW > $STATUS_CHECK_FILE
     exit 0
 fi
 
@@ -39,7 +39,7 @@ if [ $NOW -ge $(($LAST_CHECKED + $MIN_COOLDOWN_TO_RESTART)) ]; then
     fi
 
     log "Clearing out $STATUS_CHECK_FILE"
-    log "" > $STATUS_CHECK_FILE
+    echo "" > $STATUS_CHECK_FILE
 else
     log "Still waiting on cooldown to restart Miko2. Waiting for $(($MIN_COOLDOWN_TO_RESTART - $NOW + $LAST_CHECKED)) more seconds."
 fi
