@@ -30,4 +30,4 @@ screen -dmS $SCREEN_NAME \
         -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled \
         -XX:-UseBiasedLocking -XX:+ExplicitGCInvokesConcurrent \
         -Xss8m \
-        -jar "$JAR_PATH/$JAR_FILE" nogui --forceUpgrade
+        -jar "$JAR_PATH/$JAR_FILE" nogui
