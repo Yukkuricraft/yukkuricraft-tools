@@ -2,7 +2,7 @@
 
 NAME=Yukkuricraft
 SCREEN_NAME=yukkuricraft16
-JAR_FILE="paper-1.16.5-792.jar"
+JAR_FILE="paper-1.18.1-101.jar"
 JAR_PATH="/home/minecraft/YC/YukkuriCraft"
 RAM=16G
 
@@ -30,4 +30,4 @@ screen -dmS $SCREEN_NAME \
         -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled \
         -XX:-UseBiasedLocking -XX:+ExplicitGCInvokesConcurrent \
         -Xss8m \
-        -jar "$JAR_PATH/$JAR_FILE" nogui
+        -jar "$JAR_PATH/$JAR_FILE" nogui --forceUpgrade
