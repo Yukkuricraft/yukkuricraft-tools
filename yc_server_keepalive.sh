@@ -1,9 +1,10 @@
 #!/bin/bash
 
 NAME=Yukkuricraft
-SCREEN_NAME=yukkuricraft16
+SCREEN_NAME=yukkuricraft18
 JAR_FILE="paper-1.18.1-101.jar"
 JAR_PATH="/home/minecraft/YC/YukkuriCraft"
+JAVA_PATH="/home/minecraft/.sdkman/candidates/java/current/bin/java"
 RAM=16G
 
 ###################
@@ -24,7 +25,7 @@ log "Could not find $NAME's screen running! Restarting..."
 cd $JAR_PATH
 
 screen -dmS $SCREEN_NAME \
-        java -Xms${RAM} -Xmx${RAM} \
+        $JAVA_PATH -Xms${RAM} -Xmx${RAM} \
         -Duser.dir=${JAR_PATH} \
         -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=100 \
         -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=90 -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled \
