@@ -2,7 +2,7 @@
 
 NAME=Yukkuricraft
 SCREEN_NAME=yukkuricraft18
-JAR_FILE="paper-1.18.1-101.jar"
+JAR_FILE="paper-1.18.1-176.jar"
 JAR_PATH="/home/minecraft/YC/YukkuriCraft"
 JAVA_PATH="/home/minecraft/.sdkman/candidates/java/current/bin/java"
 RAM=16G
