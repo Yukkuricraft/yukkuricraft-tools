@@ -7,10 +7,10 @@ from datetime import datetime
 import secrets.discord_secrets as secrets
 
 DEVICES = {
-    "Main Disk": ("/", 80.0), # Dict[str, Tuple[str, float]] - Key is human readable name. Tuple vals are path and disk usage percent to alert on
+    "Main Disk": ("/", 85.0), # Dict[str, Tuple[str, float]] - Key is human readable name. Tuple vals are path and disk usage percent to alert on
     #"Raid Backup Disk": ("/media/raidbackups", 85.0),
     "Primary Backup Disk": ("/media/backups-primary", 90.0),
-    "Failover Backup Disk": ("/media/backups-failover", 98.0),
+    #"Failover Backup Disk": ("/media/backups-failover", 98.0),
 }
 
 for dev_name, data in DEVICES.items():

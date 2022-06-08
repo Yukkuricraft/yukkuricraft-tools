@@ -10,6 +10,7 @@ import requests
 import argparse
 import logging
 import secrets.ip_check_secrets as secrets
+import traceback
 
 from typing import Dict, Optional
 from email.message import EmailMessage
@@ -33,7 +34,7 @@ class IP_Checker:
         self.prodrun = args.prodrun
         self.verbose = args.verbose
 
-        log_level = self.DEBUG if self.verbose else logging.INFO
+        log_level = logging.DEBUG if self.verbose else logging.INFO
 
         dirname = os.path.dirname(self.LOG_LOC)
         if not os.path.exists(dirname):
@@ -132,6 +133,7 @@ class IP_Checker:
                 f"IP Change detected and notified. Old IP: {old_ip}, New IP: {new_ip}"
             )
         except:
+            traceback.print_exc()
             raise EmailFailedException(
                 f"Failed to send email about new IP change. Prod run: {self.prodrun}"
             )
