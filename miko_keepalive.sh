@@ -3,6 +3,7 @@
 MIN_COOLDOWN_TO_RESTART=120 # seconds.
 MIKO_DIR="/home/minecraft/YC/Miko2/"
 MIKO_START_SCRIPT="startMiko.sh"
+RUNNING_PID_PATH="miko-mk-ii-0.1/RUNNING_PID"
 NOW=$(date +"%s")
 
 log () {
@@ -13,6 +14,12 @@ IS_RUNNING=$(ps aux | grep Miko2 | grep SCREEN)
 if [ -n "$IS_RUNNING" ]; then
     log "Miko is running. Aborting."
     exit 0
+fi
+
+RUNNING_PID_FILE="$MIKO_DIR/$RUNNING_PID_PATH"
+if [ -f "$RUNNING_PID_FILE" ]; then
+    echo "Detected Miko being down, but found a RUNNING_PID file. This is likely due to a bad exit/shutdown. Deleting."
+    rm $RUNNING_PID_FILE
 fi
 
 STATUS_CHECK_FILE="/home/minecraft/YC/yukkuricraft-tools/MIKO_KEEPALIVE_STATUS"
