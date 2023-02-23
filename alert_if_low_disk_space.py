@@ -18,8 +18,8 @@ for dev_name, data in DEVICES.items():
     percent_used = psutil.disk_usage(path)[3]
     if percent_used > threshold_percentage:
         payload = {
-            "content": "Yo (%s), the `%s` is over %.2f%% disk space usage. You should clean it up."
-            % (secrets.REMI_USER_ID, dev_name, threshold_percentage)
+            "content": "Yo (%s), the `%s` is over %.2f%% disk space usage. You should clean it up. Currently at %.2f%%"
+            % (secrets.REMI_USER_ID, dev_name, threshold_percentage, percent_used)
         }
 
         requests.post(

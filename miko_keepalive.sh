@@ -1,5 +1,6 @@
 #!/bin/bash
 
+JAVA_PATH="/home/minecraft/.sdkman/candidates/java/current/bin/java"
 MIN_COOLDOWN_TO_RESTART=120 # seconds.
 MIKO_DIR="/home/minecraft/YC/Miko2/"
 MIKO_START_SCRIPT="startMiko.sh"
@@ -18,7 +19,7 @@ fi
 
 RUNNING_PID_FILE="$MIKO_DIR/$RUNNING_PID_PATH"
 if [ -f "$RUNNING_PID_FILE" ]; then
-    echo "Detected Miko being down, but found a RUNNING_PID file. This is likely due to a bad exit/shutdown. Deleting."
+    log "Detected Miko being down, but found a RUNNING_PID file. This is likely due to a bad exit/shutdown. Deleting."
     rm $RUNNING_PID_FILE
 fi
 
@@ -38,7 +39,8 @@ fi
 
 if [ $NOW -ge $(($LAST_CHECKED + $MIN_COOLDOWN_TO_RESTART)) ]; then
     log "Cooldown elapsed. Restarting Miko2..."
-    (cd $MIKO_DIR && $MIKO_DIR/$MIKO_START_SCRIPT)
+    log screen -dmS Miko2 "/home/minecraft/YC/Miko2/miko-mk-ii-0.1/bin/miko-mk-ii"
+    screen -dmS Miko2 "/home/minecraft/YC/Miko2/miko-mk-ii-0.1/bin/miko-mk-ii"
 
     if [ $? -ne 0 ]; then
         log "FAILED TO START MIKO?"
