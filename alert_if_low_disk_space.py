@@ -6,11 +6,14 @@ import subprocess
 from datetime import datetime
 import secrets.discord_secrets as secrets
 
+DEFAULT_THRESHOLD = 85.0
 DEVICES = {
-    "Main Disk": ("/", 85.0), # Dict[str, Tuple[str, float]] - Key is human readable name. Tuple vals are path and disk usage percent to alert on
-    #"Raid Backup Disk": ("/media/raidbackups", 85.0),
-    "Primary Backup Disk": ("/media/backups-primary", 90.0),
-    #"Failover Backup Disk": ("/media/backups-failover", 98.0),
+    # Dict[str, Tuple[str, float]] - Key is human readable name. Tuple vals are path and disk usage percent to alert on
+    "OS Drive Root Partition": ("/", DEFAULT_THRESHOLD),
+    "OS Drive Home Partition": ("/home", DEFAULT_THRESHOLD),
+    "YC2.0 Data Disk": ("/var/lib/yukkuricraft", DEFAULT_THRESHOLD),
+    "Primary Backup Disk": ("/media/backups-primary", DEFAULT_THRESHOLD),
+    "Archives Backup Disk": ("/media/backups-archive", DEFAULT_THRESHOLD),
 }
 
 for dev_name, data in DEVICES.items():

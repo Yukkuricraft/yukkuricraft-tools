@@ -27,7 +27,7 @@ class IP_Checker:
 
     SENT_FROM_NAME = "Yukkuri Notifications"
     SUBJECT_FMT = "[Yukkuricraft] IP Change Detected on {}"
-    BODY_FMT = "Hi nignogs.\n\nThis is an automagically generated email.\n\nPrev Server IP: {}\nNew Server IP: {}\n\nHave fun playing, nerds.\n~ RemiBot"
+    BODY_FMT = "Meow.\n\nThis is an automagically generated email.\n\nPrev Server IP: {}\nNew Server IP: {}\n\nHave fun playing, nerds.\n~ RemiBot"
     EMAIL_RECIPIENT_FMT = "{} <{}>"
 
     def __init__(self, args: argparse.Namespace):
