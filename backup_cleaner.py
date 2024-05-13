@@ -198,7 +198,7 @@ def getOldestTimestamp(slots):
 
 def findAllFilesToDelete(slots, file_to_epoch_map):
     oldest_timestamp_to_keep = getOldestTimestamp(slots)
-    all_backups = file_to_epoch_map.keys()
+    all_backups = list(file_to_epoch_map.keys())
     all_backups.sort(reverse=True)
 
     # Grab all tups in each rule_string category. But first filter out any rule_string categories that are empty.

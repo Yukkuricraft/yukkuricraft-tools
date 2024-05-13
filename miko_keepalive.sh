@@ -1,11 +1,12 @@
 #!/bin/bash
 
-JAVA_PATH="/home/minecraft/.sdkman/candidates/java/current/bin/java"
 MIN_COOLDOWN_TO_RESTART=120 # seconds.
 MIKO_DIR="/home/minecraft/YC/Miko2/"
 MIKO_START_SCRIPT="startMiko.sh"
 RUNNING_PID_PATH="miko-mk-ii-0.1/RUNNING_PID"
 NOW=$(date +"%s")
+
+JAVA_HOME="/home/minecraft/.sdkman/candidates/java/current"
 
 log () {
     echo "[$(date +"%Y-%m-%d_%H-%M")] $@"
@@ -39,8 +40,8 @@ fi
 
 if [ $NOW -ge $(($LAST_CHECKED + $MIN_COOLDOWN_TO_RESTART)) ]; then
     log "Cooldown elapsed. Restarting Miko2..."
-    log screen -dmS Miko2 "/home/minecraft/YC/Miko2/miko-mk-ii-0.1/bin/miko-mk-ii"
-    screen -dmS Miko2 "/home/minecraft/YC/Miko2/miko-mk-ii-0.1/bin/miko-mk-ii"
+    log screen -L -Logfile "${MIKO_DIR}/logfile.txt" -dmS Miko2 "${MIKO_DIR}/miko-mk-ii-0.1/bin/miko-mk-ii" -java-home $JAVA_HOME
+    screen -L -Logfile "${MIKO_DIR}/logfile.txt" -dmS Miko2 "${MIKO_DIR}/miko-mk-ii-0.1/bin/miko-mk-ii" -java-home $JAVA_HOME
 
     if [ $? -ne 0 ]; then
         log "FAILED TO START MIKO?"
